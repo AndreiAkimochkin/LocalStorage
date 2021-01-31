@@ -2,20 +2,29 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./bll/store";
-import {incValueAC, incValuesTC, setValueFromLocalStorageTC} from "./bll/conter-reducer";
+import {incValueAC} from "./bll/conter-reducer";
 
 function App() {
 
  const value = useSelector<AppStateType, number>(state=>state.counter.value)
 const dispatch = useDispatch()
 
+
     const incHandler = () => {
-        dispatch(incValuesTC(value))
+        dispatch(incValueAC())
     }
 
 useEffect(()=>{
-    dispatch(setValueFromLocalStorageTC())
+    dispatch(incValueAC())
 },[])
+
+//     const incHandler = () => {
+//         dispatch(incValuesTC(value))
+//     }
+//
+// useEffect(()=>{
+//     dispatch(setValueFromLocalStorageTC())
+// },[])
 
     // const [value, setValue] = useState<number>(0)
     //

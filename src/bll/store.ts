@@ -6,8 +6,24 @@ const rootReducer = combineReducers({
     counter: counterReducer
 })
 
+let preloadedState;
+const persistedStateString = localStorage.getItem('app-state')
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
+if(persistedStateString) {
+    preloadedState=JSON.parse(persistedStateString)
+}
+export const store = createStore(rootReducer, preloadedState, applyMiddleware(thunk))
+
+
+
+store.subscribe(()=>{
+    localStorage.setItem('app-state', JSON.stringify(store.getState()))
+    // localStorage.setItem('value', JSON.stringify(store.getState().counter.value))
+})
+
+
+
+
 
 type AppStoreType =typeof store
 

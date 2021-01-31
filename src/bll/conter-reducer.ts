@@ -31,20 +31,20 @@ export type IncValueActionType = ReturnType<typeof incValueAC>
 export type SetValueFromLocalStorageActionType = ReturnType<typeof setValueFromLocalStorageAC>
 
 //Thunk
-export const incValuesTC = (value: number) => (dispatch: Dispatch, getState: () => AppStateType) => {
-    let currentValue = getState().counter.value
-    localStorage.setItem('counterValue', JSON.stringify(currentValue + 1))
-    dispatch(incValueAC())
-}
-
-export const setValueFromLocalStorageTC = () => (dispatch: Dispatch) => {
-    let valueAsString = localStorage.getItem('counterValue')
-
-    if (valueAsString) {
-        let newValue = JSON.parse(valueAsString)
-        dispatch(setValueFromLocalStorageAC(newValue))
-    }
-
-}
+// export const incValuesTC = (value: number) => (dispatch: Dispatch, getState: () => AppStateType) => {
+//     let currentValue = getState().counter.value
+//     localStorage.setItem('counterValue', JSON.stringify(currentValue + 1))
+//     dispatch(incValueAC())
+// }
+//
+// export const setValueFromLocalStorageTC = () => (dispatch: Dispatch) => {
+//     let valueAsString = localStorage.getItem('counterValue')
+//
+//     if (valueAsString) {
+//         let newValue = JSON.parse(valueAsString)
+//         dispatch(setValueFromLocalStorageAC(newValue))
+//     }
+//
+// }
 
 type ActionsType = IncValueActionType | SetValueFromLocalStorageActionType
